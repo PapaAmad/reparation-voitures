@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Général automobile - Ajout de Nouveaux Produits</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; }
+        header { background-color: #333; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        h1 { margin: 0; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; }
+        .content { max-width: 800px; margin: 0 auto; padding: 20px; background-color: white; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        form { display: grid; gap: 15px; }
+        label { font-weight: bold; }
+        input[type="text"], input[type="number"], textarea, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        input[type="file"] { border: 1px solid #ddd; padding: 8px; border-radius: 4px; }
+        button { background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #2980b9; }
+        #message { margin-top: 20px; padding: 10px; border-radius: 5px; display: none; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="highlight">Général</span> Automobile </h1>
+    </header>
+    <div class="content">
+        <h2>Ajouter un Nouveau Produit</h2>
+        <form id="productForm" enctype="multipart/form-data">
+            <div>
+                <label for="nom">Nom du produit:</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div>
+                <label for="prix">Prix (Francs CFA):</label>
+                <input type="number" id="prix" name="prix" step="100" required>
+            </div>
+            <div>
+                <label for="image">Image du produit:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+            <button type="submit">Ajouter le produit</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('productForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('/api/products/add', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const messageDiv = document.getElementById('message');
+
+                if (response.ok) {
+                    messageDiv.textContent = 'Produit ajouté avec succès !';
+                    messageDiv.className = 'success';
+                    messageDiv.style.display = 'block';
+                    this.reset();
+                } else {
+                    messageDiv.textContent = 'Erreur lors de l\'ajout du produit';
+                    messageDiv.className = 'error';
+                    messageDiv.style.display = 'block';
+                }
+
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Général automobile</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333; 
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header { 
+            background: #35424a;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        #main {
+            padding: 30px 0;
+            background: #ffffff;
+        }
+
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            margin-left: 20px; 
+        }
+        .content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .product { 
+            background-color: white; 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            display: flex; 
+        }
+        .product-image { 
+            width: 200px; 
+            height: 200px; 
+            object-fit: cover; 
+            margin-right: 20px; 
+        }
+        .product-details { 
+            flex: 1; 
+        }
+        .product h2 { 
+            color: #e74c3c; 
+            margin-top: 0; 
+        }
+        .product p { 
+            color: #333; 
+        }
+        .product .price { 
+            font-weight: bold; 
+            color: #27ae60; 
+        }
+        .button { 
+            display: inline-flex; 
+            align-items: center; 
+            background-color: #3498db; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .button svg { 
+            margin-right: 10px; 
+        }
+        #cart-count { 
+            background-color: #e74c3c; 
+            color: white; 
+            border-radius: 50%; 
+            padding: 2px 6px; 
+            font-size: 12px; 
+            margin-left: 5px; 
+        }
+        #cart-page { 
+            display: none; 
+        }
+        .cart-item { 
+            background-color: white; 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        #order-confirmation { 
+            display: none; 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #e8f5e9; 
+            border-radius: 5px; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Général</span> Automobile</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="Services.html">Services</a></li>
+                    <li><a href="Contacts.html">Contact</a></li>
+                    <li class="current"><a href="Produits.html">Produits</a></li>
+                    <li><a href="#" id="cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span id="cart-count">0</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="content">
+        <div id="products-page">
+            <h2>Nos Produits</h2>
+            <div id="product-list"></div>
+        </div>
+        <div id="cart-page">
+            <h2>Votre Panier</h2>
+            <div id="cart-items"></div>
+            <button id="checkout-button">Commander</button>
+        </div>
+    </div>
+
+    <!-- Formulaire de commande -->
+    <div id="order-form" style="display:none;">
+        <h2>Passer la commande</h2>
+        <form id="orderDetailsForm">
+            <div>
+                <label for="prenom">Prénom:</label>
+                <input type="text" id="prenom" name="prenom" required>
+            </div>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div>
+                <label for="telephone">Numéro de téléphone:</label>
+                <input type="tel" id="telephone" name="telephone" required>
+            </div>
+            <button type="submit">Envoyer la commande</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const response = await fetch('/api/products');
+            const products = await response.json();
+            const productList = document.getElementById('product-list');
+
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+                productElement.innerHTML = `
+                    <img src="/uploads/${product.image}" alt="${product.nom}" class="product-image">
+                    <div class="product-details">
+                        <h2>${product.nom}</h2>
+                        <p>${product.description}</p>
+                        <p class="price">Prix: ${product.prix} Francs CFA</p>
+                        <a href="#" class="button add-to-cart" data-id="${product._id}" data-name="${product.nom}" data-price="${product.prix}">
+                            Ajouter au panier
+                        </a>
+                    </div>
+                `;
+                productList.appendChild(productElement);
+            });
+
+            const cartItems = [];
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+
+                    cartItems.push({ id, name, price });
+
+                    const cartItemsDiv = document.getElementById('cart-items');
+                    cartItemsDiv.innerHTML += `<p>${name} - ${price} Francs CFA</p>`;
+                });
+            });
+
+            document.getElementById('checkout-button').addEventListener('click', function() {
+                document.getElementById('order-form').style.display = 'block';
+            });
+
+            document.getElementById('orderDetailsForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const prenom = document.getElementById('prenom').value;
+                const nom = document.getElementById('nom').value;
+                const telephone = document.getElementById('telephone').value;
+
+                const orderDetails = {
+                    prenom,
+                    nom,
+                    telephone,
+                    cartItems
+                };
+
+                try {
+                    const response = await fetch('/api/order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(orderDetails)
+                    });
+
+                    if (response.ok) {
+                        alert('Le gérant va vous appeler d\'ici peu.');
+                    } else {
+                        alert('Erreur lors de l\'envoi de la commande.');
+                    }
+                } catch (error) {
+                    console.error('Erreur:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
