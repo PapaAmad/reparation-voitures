@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import productRoutes from './routes/productRoutes.mjs';
 import orderRoutes from './routes/orderRoutes.mjs';
+import dotenv from 'dotenv';
 import path from 'path';
 
 const app = express();
