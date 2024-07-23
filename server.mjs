@@ -15,9 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://niangpapaamadou88:gvCtAdq5pQYcGhcA@cluster0.digu4p0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI)
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+    .catch(err => console.log('MongoDB connection error:', err));
 
 // Routes
 app.use('/api/products', productRoutes);
