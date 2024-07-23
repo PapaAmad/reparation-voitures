@@ -1,183 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Général automobile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-        }
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
-        }
-        header a {
-            color: #ffffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        header ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            overflow: hidden;
-        }
-        header li {
-            float: left;
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding h1 {
-            margin: 0;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        header .highlight, header .current a {
-            color: #e8491d;
-            font-weight: bold;
-        }
-        header a:hover {
-            color: #ffffff;
-            font-weight: bold;
-        }
-        #showcase {
-            min-height: 400px;
-            background: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat 0 -300px;
-            text-align: center;
-            color: #ffffff;
-        }
-        #showcase h1 {
-            margin-top: 100px;
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-        #showcase p {
-            font-size: 20px;
-        }
-        #main {
-            padding: 20px;
-            background: #ffffff;
-        }
-        #main .button {
-            display: inline-block;
-            color: #333;
-            background: #e8491d;
-            padding: 10px 20px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-        footer {
-            padding: 20px;
-            margin-top: 20px;
-            color: #ffffff;
-            background-color: #e8491d;
-            text-align: center;
-        }
-        /* Hamburger menu styles */
-        .menu-icon {
-            display: none;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        .nav-links {
-            display: flex;
-            justify-content: space-between;
-            list-style: none;
-        }
-        .nav-links li {
-            padding: 0 20px;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-            }
-            .nav-links li {
-                text-align: center;
-                padding: 10px 0;
-            }
-            .menu-icon {
-                display: block;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Général automobile - Réparation et vente d'appareils électriques automobiles</title>
+<meta name="description" content="Général automobile - Votre partenaire de confiance pour tous vos besoins électriques automobiles à Dakar, Sénégal. Réparation, vente et entretien.">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+  }
+  .container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+  }
+  header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+  }
+  header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  header ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+  }
+  header #branding {
+    float: left;
+  }
+  header #branding h1 {
+    margin: 0;
+  }
+  header nav {
+    float: right;
+    margin-top: 10px;
+  }
+  header .highlight, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+  }
+  header a:hover {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  #showcase {
+    min-height: 400px;
+    background: url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat 0 -300px;
+    text-align: center;
+    color: #ffffff;
+  }
+  #showcase h1 {
+    margin-top: 100px;
+    font-size: 55px;
+    margin-bottom: 10px;
+  }
+  #showcase p {
+    font-size: 20px;
+  }
+  #boxes {
+    margin-top: 20px;
+  }
+  #boxes .box {
+    float: left;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+  }
+  #boxes .box img {
+    width: 90px;
+  }
+  footer {
+    padding: 20px;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #e8491d;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+  header {
+    padding-bottom: 20px;
+  }
+  #showcase h1 {
+    margin-top: 40px;
+    font-size: 35px;
+  }
+  #showcase p {
+    font-size: 18px;
+  }
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1><span class="highlight">Général</span> Automobile</h1>
-            </div>
-            <nav>
-                <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-                <ul class="nav-links" id="navLinks">
-                    <li class="current"><a href="index.html">Accueil</a></li>
-                    <li><a href="Services.html">Services</a></li>
-                    <li><a href="Contacts.html">Contact</a></li>
-                    <li><a href="Produits.html">Produits</a></li>
-                    <li><a href="Produits.html" id="cart-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                        <span id="cart-count">0</span>
-                    </a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="container">
+      <div id="branding">
+        <h1><span class="highlight">Général</span> Automobile </h1>
+      </div>
+      <nav>
+        <ul>
+          <li class="current"><a href="index.html">Accueil</a></li>
+          <li><a href="Services.html">Services</a></li>
+          <li><a href="Contacts.html">Contact</a></li>
+          <li><a href="Produits.html">Produits</a></li>
+          <li><a href="Produits.html" id="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cart-count">0</span>
+        </a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Bienvenue chez Général Automobile</h1>
-            <p>Les meilleurs services de réparation et de vente d'appareils électriques automobiles à Dakar, Sénégal.</p>
-        </div>
-    </section>
+  <section id="showcase">
+    <div class="container">
+      <h1>Experts en réparation et vente d'appareils électriques automobiles</h1>
+      <p>Votre partenaire de confiance pour tous vos besoins électriques automobiles à Dakar</p>
+    </div>
+  </section>
 
-    <section id="main">
-        <div class="container">
-            <h2>Nos Services</h2>
-            <p>Nous offrons une gamme complète de services pour assurer le bon fonctionnement de votre véhicule. Nos experts sont à votre disposition pour diagnostiquer et réparer les problèmes électriques de votre véhicule. Découvrez tous nos services en visitant la page Services.</p>
-            <a href="Services.html" class="button">En savoir plus</a>
-        </div>
-    </section>
+  <section id="boxes">
+    <div class="container">
+      <div class="box">
+        <img src="https://img.icons8.com/ios/100/000000/car-battery.png" alt="Icône batterie">
+        <h3>Réparation</h3>
+        <p>Service de réparation professionnel pour tous les systèmes électriques de votre véhicule</p>
+      </div>
+      <div class="box">
+        <img src="https://img.icons8.com/?size=100&id=16559&format=png&color=000000" alt="Icône pièces auto">
+        <h3>Vente</h3>
+        <p>Large gamme d'appareils et de pièces électriques automobiles de qualité</p>
+      </div>
+      <div class="box">
+        <img src="https://img.icons8.com/ios/100/000000/maintenance.png" alt="Icône maintenance">
+        <h3>Entretien</h3>
+        <p>Services d'entretien régulier pour maintenir votre véhicule en parfait état</p>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>Général automobile &copy; 2023 | Réparation et vente d'appareils électriques automobiles à Dakar, Sénégal</p>
-    </footer>
-
-    <script>
-    function toggleMenu() {
-        var navLinks = document.getElementById('navLinks');
-        if (navLinks.style.display === 'block') {
-            navLinks.style.display = 'none';
-        } else {
-            navLinks.style.display = 'block';
-        }
-    }
-    </script>
+  <footer>
+    <p> Général automobile  &copy; 2023 | Réparation et vente d'appareils électriques automobiles à Dakar, Sénégal</p>
+  </footer>
 </body>
 </html>
