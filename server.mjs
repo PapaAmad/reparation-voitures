@@ -6,16 +6,15 @@ import orderRoutes from './routes/orderRoutes.mjs';
 import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config();
-
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://niangpapaamadou88:gvCtAdq5pQYcGhcA@cluster0.digu4p0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
@@ -28,12 +27,10 @@ app.use('/api/order', orderRoutes);
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
 
-// Catch-all route for SPA
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });
-
-export default app;
 
 // niangpapaamadou88
 // gvCtAdq5pQYcGhcA
