@@ -1,9 +1,15 @@
 // Importation des modules nécessaires
 import express from 'express';
 import fetch from 'node-fetch';
+import twilio from 'twilio';
 
 // Création du routeur Express
 const router = express.Router();
+
+// twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = twilio(accountSid, authToken);
 
 // Fonction de validation des données de commande
 function validateOrderData(data) {
@@ -28,22 +34,16 @@ function validateOrderData(data) {
     return null;
 }
 
-// Fonction d'envoi de message WhatsApp
 async function sendWhatsAppMessage(phoneNumber, message) {
     try {
-        // Encodage du message pour l'URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Construction de l'URL pour l'API WhatsApp
-        const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-        
-        // Envoi de la requête à l'API WhatsApp
-        const response = await fetch(url, { method: 'GET' });
-        
-        // Retourne true si la requête a réussi, false sinon
-        return response.ok;
+        const response = await client.messages.create({
+            body: message,
+            from: 'whatsapp:+14155238886',  // Votre numéro Twilio WhatsApp
+            to: `whatsapp:${phoneNumber}`
+        });
+        console.log('Message envoyé avec succès:', response.sid);
+        return true;
     } catch (error) {
-        // En cas d'erreur, afficher l'erreur dans la console et retourner false
         console.error('Erreur lors de l\'envoi du message WhatsApp:', error);
         return false;
     }
