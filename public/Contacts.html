@@ -20,13 +20,14 @@
       padding: 20px;
     }
     header {
-      background: #35424a;
-      color: #ffffff;
-      padding-top: 30px;
-      min-height: 70px;
-      border-bottom: #e8491d 3px solid;
-      position: relative;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #35424a;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-bottom: #e8491d 3px solid;
+}
     header a {
       color: #ffffff;
       text-decoration: none;
@@ -48,8 +49,9 @@
       float: left;
     }
     header #branding h1 {
-      margin: 0;
-    }
+  margin: 0;
+  flex-grow: 1;
+}
     header nav {
       float: right;
       margin-top: 10px;
@@ -87,6 +89,12 @@
     .contact-form button:hover {
       background: #35424a;
     }
+    .menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: auto;
+}
     footer {
       padding: 20px;
       margin-top: 20px;
@@ -95,39 +103,28 @@
       text-align: center;
     }
     @media(max-width: 768px) {
-      .menu-icon {
-        display: block;
-        font-size: 30px;
-        cursor: pointer;
-        color: #ffffff;
-      }
-      header nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #35424a;
-      }
-      header nav ul li {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-      }
-      header nav ul li a {
-        padding: 10px;
-        display: block;
-      }
-      header nav ul.show {
-        display: flex;
-      }
-      .contact-info, .contact-form {
-        float: none;
-        text-align: center;
-        width: 100%;
-      }
-      header {
-        padding-bottom: 20px;
-      }
-    }
+  .menu-icon {
+    display: block;
+  }
+  header nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #35424a;
+  }
+  header nav ul li {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  header nav ul li a {
+    padding: 10px;
+    display: block;
+  }
+  header nav ul.show {
+    display: flex;
+  }
+}
   </style>
 </head>
 <body>
