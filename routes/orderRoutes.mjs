@@ -1,15 +1,14 @@
 // Importation des modules nécessaires
 import express from 'express';
 import fetch from 'node-fetch';
-import twilio from 'twilio';
+import axios from 'axios';
+
+
 
 // Création du routeur Express
 const router = express.Router();
 
-// twilio
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = twilio(accountSid, authToken);
+
 
 // Fonction de validation des données de commande
 function validateOrderData(data) {
@@ -35,16 +34,24 @@ function validateOrderData(data) {
 }
 
 async function sendWhatsAppMessage(phoneNumber, message) {
+    const url = `https://graph.facebook.com/v17.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+    const headers = {
+        'Authorization': `Bearer ${process.env.WHATSAPP_TOKEN}`,
+        'Content-Type': 'application/json'
+    };
+    const data = {
+        messaging_product: "whatsapp",
+        to: phoneNumber,
+        type: "text",
+        text: { body: message }
+    };
+
     try {
-        const response = await client.messages.create({
-            body: message,
-            from: 'whatsapp:+14155238886',  // Votre numéro Twilio WhatsApp
-            to: `whatsapp:${phoneNumber}`
-        });
-        console.log('Message envoyé avec succès:', response.sid);
+        const response = await axios.post(url, data, { headers });
+        console.log('Message envoyé avec succès:', response.data);
         return true;
     } catch (error) {
-        console.error('Erreur lors de l\'envoi du message WhatsApp:', error);
+        console.error('Erreur lors de l\'envoi du message WhatsApp:', error.response ? error.response.data : error.message);
         return false;
     }
 }
