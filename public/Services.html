@@ -1,174 +1,199 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nos Services - Général automobile</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 20px;
-  }
-  header {
-    background: #35424a;
-    color: #ffffff;
-    padding-top: 30px;
-    min-height: 70px;
-    border-bottom: #e8491d 3px solid;
-  }
-  header a {
-    color: #ffffff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-  }
-  header ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    overflow: hidden;
-  }
-  header li {
-    float: left;
-    display: inline;
-    padding: 0 20px 0 20px;
-  }
-  header #branding {
-    float: left;
-  }
-  header #branding h1 {
-    margin: 0;
-  }
-  header nav {
-    float: right;
-    margin-top: 10px;
-  }
-  header .highlight, header .current a {
-    color: #e8491d;
-    font-weight: bold;
-  }
-  header a:hover {
-    color: #ffffff;
-    font-weight: bold;
-  }
-  #main {
-    padding: 30px 0;
-    background: #ffffff;
-  }
-  .service {
-    background: #f4f4f4;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-  }
-  .service h3 {
-    color: #e8491d;
-  }
-  footer {
-    padding: 20px;
-    margin-top: 20px;
-    color: #ffffff;
-    background-color: #e8491d;
-    text-align: center;
-  }
-  @media(max-width: 768px) {
-            header #branding,
-            header nav,
-            header nav li,
-            .service {
-                float: none;
-                text-align: center;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - Général automobile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        #main {
+            padding: 20px;
+            background: #ffffff;
+        }
+        .service {
+            background: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: justify;
+        }
+        .service h3 {
+            color: #e8491d;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #ffffff;
+            background-color: #e8491d;
+            text-align: center;
+        }
+        /* Hamburger menu styles */
+        .menu-icon {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+        .nav-links li {
+            padding: 0 20px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
                 width: 100%;
             }
-            header {
-                padding-bottom: 20px;
+            .nav-links li {
+                text-align: center;
+                padding: 10px 0;
             }
-            #showcase h1 {
-                margin-top: 40px;
+            .menu-icon {
+                display: block;
+            }
+        }
+        /* Ensure service boxes fit within the screen on mobile */
+        @media (max-width: 768px) {
+            .service {
+                padding: 10px;
+                margin: 10px 0;
             }
             .container {
                 width: 100%;
                 padding: 10px;
             }
         }
-</style>
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div id="branding">
-        <h1><span class="highlight">Général</span> Automobile</h1>
-      </div>
-      <nav>
-        <nav>
-          <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li class="current"><a href="Services.html">Services</a></li>
-            <li><a href="Contacts.html">Contact</a></li>
-            <li><a href="Produits.html">Produits</a></li>
-            <li><a href="Produits.html" id="cart-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-              <span id="cart-count">0</span>
-          </a></li>
-          </ul>
-        </nav>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Général</span> Automobile</h1>
+            </div>
+            <nav>
+                <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li class="current"><a href="Services.html">Services</a></li>
+                    <li><a href="Contacts.html">Contact</a></li>
+                    <li><a href="Produits.html">Produits</a></li>
+                    <li><a href="Produits.html" id="cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span id="cart-count">0</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <section id="main">
-    <div class="container">
-      <h2>Nos Services</h2>
-      
-      <div class="service">
-        <h3>Diagnostic électrique</h3>
-        <p>Grâce à nos outils de diagnostic de pointe, nous identifions rapidement et précisément les problèmes électriques de votre véhicule. Notre expertise couvre une large gamme de marques et modèles.</p>
-      </div>
-      
-      <div class="service">
-        <h3>Réparation de démarreurs et alternateurs</h3>
-        <p>Nous réparons et remplaçons les démarreurs et alternateurs défectueux pour assurer le bon fonctionnement de votre véhicule. Nos pièces sont de qualité et garanties.</p>
-      </div>
-      
-      <div class="service">
-        <h3>Installation de systèmes audio et vidéo</h3>
-        <p>Améliorez votre expérience de conduite avec nos installations audio et vidéo sur mesure. Nous proposons une large gamme de produits adaptés à tous les budgets.</p>
-      </div>
-      
-      <div class="service">
-        <h3>Réparation de climatisation automobile</h3>
-        <p>Notre équipe est formée pour diagnostiquer et réparer les systèmes de climatisation. Nous assurons également la recharge de gaz réfrigérant dans le respect des normes environnementales.</p>
-      </div>
-      
-      <div class="service">
-        <h3>Vente d'appareils électriques automobiles</h3>
-        <p>Nous proposons une large gamme d'appareils électriques pour votre véhicule : batteries, alternateurs, démarreurs, faisceaux électriques, etc. Tous nos produits sont certifiés et garantis.</p>
-      </div>
-      
-      <div class="service">
-        <h3>Entretien préventif</h3>
-        <p>Prévenez les pannes électriques avec notre service d'entretien régulier. Nous vérifions l'ensemble du système électrique de votre véhicule pour assurer sa longévité et sa fiabilité.</p>
-      </div>
-    </div>
-  </section>
+    <section id="main">
+        <div class="container">
+            <h2>Nos Services</h2>
+            <div class="service">
+                <h3>Diagnostic électrique</h3>
+                <p>Grâce à nos outils de diagnostic de pointe, nous identifions rapidement et précisément les problèmes électriques de votre véhicule. Notre expertise couvre une large gamme de marques et modèles.</p>
+            </div>
+            <div class="service">
+                <h3>Réparation de démarreurs et alternateurs</h3>
+                <p>Nous réparons et remplaçons les démarreurs et alternateurs défectueux pour assurer le bon fonctionnement de votre véhicule. Nos pièces sont de qualité et garanties.</p>
+            </div>
+            <div class="service">
+                <h3>Installation de systèmes audio et vidéo</h3>
+                <p>Améliorez votre expérience de conduite avec nos installations audio et vidéo sur mesure. Nous proposons une large gamme de produits adaptés à tous les budgets.</p>
+            </div>
+            <div class="service">
+                <h3>Réparation de climatisation automobile</h3>
+                <p>Notre équipe est formée pour diagnostiquer et réparer les systèmes de climatisation. Nous assurons également la recharge de gaz réfrigérant dans le respect des normes environnementales.</p>
+            </div>
+            <div class="service">
+                <h3>Vente d'appareils électriques automobiles</h3>
+                <p>Nous proposons une large gamme d'appareils électriques pour votre véhicule : batteries, alternateurs, démarreurs, faisceaux électriques, etc. Tous nos produits sont certifiés et garantis.</p>
+            </div>
+            <div class="service">
+                <h3>Entretien préventif</h3>
+                <p>Prévenez les pannes électriques avec notre service d'entretien régulier. Nous vérifions l'ensemble du système électrique de votre véhicule pour assurer sa longévité et sa fiabilité.</p>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>Général automobile &copy; 2023 | Réparation et vente d'appareils électriques automobiles à Dakar, Sénégal</p>
-  </footer>
+    <footer>
+        <p>Général automobile &copy; 2023 | Réparation et vente d'appareils électriques automobiles à Dakar, Sénégal</p>
+    </footer>
+
+    <script>
+    function toggleMenu() {
+        var navLinks = document.getElementById('navLinks');
+        if (navLinks.style.display === 'block') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'block';
+        }
+    }
+    </script>
 </body>
 </html>
