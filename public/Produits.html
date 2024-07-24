@@ -243,37 +243,81 @@
             background: #e8491d;
         }
 
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ffffff;
+        }
+
+        #cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .content {
+            margin-right: 300px;
+        }
+
         @media (max-width: 768px) {
-    header #branding,
-    header nav,
-    header nav li,
-    .product {
-        float: none;
-        text-align: center;
-        width: 100%;
-    }
-    .product {
-        display: block;
-        text-align: center;
-    }
-    .product-image {
-        margin: 0 auto 20px auto;
-    }
-    .product-details {
-        text-align: center;
-    }
-    #order-form {
-        width: 90%;
-        padding: 15px;
-    }
-    #orderDetailsForm input {
-        font-size: 14px;
-    }
-    #orderDetailsForm button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-}
+            .hamburger {
+                display: block;
+            }
+
+            header nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: #35424a;
+            }
+
+            header nav.show {
+                display: block;
+            }
+
+            header nav ul {
+                flex-direction: column;
+            }
+
+            header nav ul li {
+                text-align: center;
+                padding: 10px 0;
+                float: none;
+            }
+
+            .content {
+                margin-right: 0;
+            }
+
+            #cart-sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                margin-top: 20px;
+            }
+
+            .product {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
 
     </style>
 </head>
@@ -364,6 +408,14 @@
                 cartTotalSpan.textContent = cartTotal;
                 cartCountSpan.textContent = cartItems.reduce((sum, item) => sum + item.quantity, 0);
             };
+
+            // Ajout de la fonctionnalité du menu hamburger
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
 
             const response = await fetch('/api/products');
             const products = await response.json();

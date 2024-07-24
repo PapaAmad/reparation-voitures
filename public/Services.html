@@ -14,7 +14,8 @@
     color: #333;
   }
   .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
     overflow: hidden;
     padding: 20px;
@@ -22,8 +23,7 @@
   header {
     background: #35424a;
     color: #ffffff;
-    padding-top: 30px;
-    min-height: 70px;
+    padding: 20px 0;
     border-bottom: #e8491d 3px solid;
   }
   header a {
@@ -36,12 +36,6 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow: hidden;
-  }
-  header li {
-    float: left;
-    display: inline;
-    padding: 0 20px 0 20px;
   }
   header #branding {
     float: left;
@@ -82,26 +76,58 @@
     background-color: #e8491d;
     text-align: center;
   }
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px 0;
+  }
   @media(max-width: 768px) {
-            header #branding,
-            header nav,
-            header nav li,
-            .service {
-                float: none;
-                text-align: center;
-                width: 100%;
-            }
-            header {
-                padding-bottom: 20px;
-            }
-            #showcase h1 {
-                margin-top: 40px;
-            }
-            .container {
-                width: 100%;
-                padding: 10px;
-            }
-        }
+    header #branding,
+    header nav,
+    header nav li,
+    .service {
+      float: none;
+      text-align: center;
+      width: 100%;
+    }
+    header {
+      padding-bottom: 20px;
+    }
+    #showcase h1 {
+      margin-top: 40px;
+    }
+    .container {
+      width: 95%;
+      padding: 10px;
+    }
+    .hamburger {
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    header nav ul {
+      display: none;
+      width: 100%;
+      background: #35424a;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      padding: 20px 0;
+    }
+    header nav ul.show {
+      display: block;
+    }
+    header nav li {
+      display: block;
+      margin: 10px 0;
+    }
+  }
 </style>
 </head>
 <body>
@@ -111,22 +137,25 @@
         <h1><span class="highlight">Général</span> Automobile</h1>
       </div>
       <nav>
-        <nav>
-          <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li class="current"><a href="Services.html">Services</a></li>
-            <li><a href="Contacts.html">Contact</a></li>
-            <li><a href="Produits.html">Produits</a></li>
-            <li><a href="Produits.html" id="cart-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-              <span id="cart-count">0</span>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li class="current"><a href="Services.html">Services</a></li>
+          <li><a href="Contacts.html">Contact</a></li>
+          <li><a href="Produits.html">Produits</a></li>
+          <li><a href="Produits.html" id="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cart-count">0</span>
           </a></li>
-          </ul>
-        </nav>
+        </ul>
       </nav>
     </div>
   </header>
@@ -170,5 +199,11 @@
   <footer>
     <p>Général automobile &copy; 2023 | Réparation et vente d'appareils électriques automobiles à Dakar, Sénégal</p>
   </footer>
+
+  <script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+      document.querySelector('header nav ul').classList.toggle('show');
+    });
+  </script>
 </body>
 </html>

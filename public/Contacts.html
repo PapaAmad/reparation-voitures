@@ -94,38 +94,46 @@
       background-color: #e8491d;
       text-align: center;
     }
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
     @media(max-width: 768px) {
-      .menu-icon {
+      .hamburger {
         display: block;
-        font-size: 30px;
-        cursor: pointer;
-        color: #ffffff;
       }
-      header nav ul {
+
+      header nav {
+        float: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #35424a;
+        width: 100%;
         display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #35424a;
       }
+
+      header nav.show {
+        display: block;
+      }
+
+      header nav ul {
+        display: block;
+      }
+
       header nav ul li {
-        width: 100%;
+        display: block;
         text-align: center;
         padding: 10px 0;
       }
-      header nav ul li a {
-        padding: 10px;
-        display: block;
-      }
-      header nav ul.show {
-        display: flex;
-      }
-      .contact-info, .contact-form {
-        float: none;
-        text-align: center;
-        width: 100%;
-      }
-      header {
-        padding-bottom: 20px;
+
+      .container {
+        width: 95%;
       }
     }
   </style>
@@ -205,6 +213,17 @@
     var navMenu = document.getElementById('nav-menu');
     
     menuIcon.addEventListener('click', function() {
+      navMenu.classList.toggle('show');
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var hamburger = document.getElementById('hamburger');
+    var navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', function() {
       navMenu.classList.toggle('show');
     });
   });
