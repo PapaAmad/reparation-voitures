@@ -1,14 +1,12 @@
 // Importation des modules nécessaires
 import express from 'express';
-import fetch from 'node-fetch';
-import axios from 'axios';
-
-
+import twilio from 'twilio';
 
 // Création du routeur Express
 const router = express.Router();
 
-
+// Configuration du client Twilio
+const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // Fonction de validation des données de commande
 function validateOrderData(data) {
@@ -33,25 +31,18 @@ function validateOrderData(data) {
     return null;
 }
 
-async function sendWhatsAppMessage(phoneNumber, message) {
-    const url = `https://graph.facebook.com/v17.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
-    const headers = {
-        'Authorization': `Bearer ${process.env.WHATSAPP_TOKEN}`,
-        'Content-Type': 'application/json'
-    };
-    const data = {
-        messaging_product: "whatsapp",
-        to: phoneNumber,
-        type: "text",
-        text: { body: message }
-    };
-
+// Fonction pour envoyer un SMS via Twilio
+async function sendSMS(phoneNumber, message) {
     try {
-        const response = await axios.post(url, data, { headers });
-        console.log('Message envoyé avec succès:', response.data);
+        const result = await twilioClient.messages.create({
+            body: message,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: phoneNumber
+        });
+        console.log('SMS envoyé avec succès:', result.sid);
         return true;
     } catch (error) {
-        console.error('Erreur lors de l\'envoi du message WhatsApp:', error.response ? error.response.data : error.message);
+        console.error('Erreur lors de l\'envoi du SMS:', error);
         return false;
     }
 }
@@ -84,8 +75,8 @@ router.post('/', async (request, response) => {
         // Simulation de la sauvegarde de la commande
         const orderId = saveOrder({ prenom, nom, telephone, cartItems, total });
 
-        // Préparation du message WhatsApp
-        const fournisseurNumero = process.env.FOURNISSEUR_NUMERO || '+221781698072';
+        // Préparation du message SMS
+        const fournisseurNumero = process.env.FOURNISSEUR_NUMERO || '+221770333903';
         const message = `
 Nouvelle commande de ${prenom} ${nom} (${telephone}):
 ${cartItems.map(item => `${item.name} - ${item.price} Francs CFA x${item.quantity}`).join('\n')}
@@ -93,18 +84,18 @@ Total: ${total} Francs CFA
 ID de commande: ${orderId}
         `.trim();
 
-        // Envoi du message WhatsApp
-        const whatsappSuccess = await sendWhatsAppMessage(fournisseurNumero, message);
+        // Envoi du SMS
+        const smsSuccess = await sendSMS(fournisseurNumero, message);
 
-        // Préparation de la réponse en fonction du succès de l'envoi du message WhatsApp
-        if (whatsappSuccess) {
+        // Préparation de la réponse en fonction du succès de l'envoi du SMS
+        if (smsSuccess) {
             response.status(201).json({ 
-                message: 'Commande créée avec succès et notification envoyée au fournisseur',
+                message: 'Commande créée avec succès et notification SMS envoyée au fournisseur',
                 orderId: orderId
             });
         } else {
             response.status(201).json({ 
-                message: 'Commande créée avec succès, mais erreur lors de l\'envoi de la notification',
+                message: 'Commande créée avec succès, mais erreur lors de l\'envoi de la notification SMS',
                 orderId: orderId
             });
         }
